@@ -1,0 +1,1438 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anass Mohamad — IT & Hardware Specialist</title>
+    <meta name="description"
+        content="Anass Mohamad — IT Support, Hardware Troubleshooting, Cybersecurity & Networking Specialist">
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230d1117'/%3E%3Ctext x='5' y='25' font-family='Inter,sans-serif' font-weight='900' font-size='24' fill='%23e6edf3'%3EA%3C/text%3E%3Ccircle cx='25' cy='24' r='3' fill='%2339d353'/%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* ========================================
+           CSS CUSTOM PROPERTIES (THEME ENGINE)
+        ======================================== */
+        :root {
+            /* IT & Hardware Mode — Dark Charcoal / Cyber Green */
+            --primary: #0d1117;
+            --primary-light: #161b22;
+            --accent: #39d353;
+            --accent-glow: rgba(57, 211, 83, 0.35);
+            --accent-secondary: #58a6ff;
+            --text-primary: #e6edf3;
+            --text-secondary: rgba(230, 237, 243, 0.65);
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --card-border: rgba(255, 255, 255, 0.1);
+            --card-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            --toggle-bg: #39d353;
+            --gradient-start: #0d1117;
+            --gradient-end: #111921;
+            --tag-bg: rgba(57, 211, 83, 0.12);
+            --tag-border: rgba(57, 211, 83, 0.25);
+            --tag-text: #39d353;
+            --hero-gradient: linear-gradient(135deg, rgba(57, 211, 83, 0.15), rgba(88, 166, 255, 0.1));
+            --section-divider: rgba(57, 211, 83, 0.08);
+        }
+
+        .n8n-mode {
+            /* Cybersecurity Mode — Deep Black / Electric Blue */
+            --primary: #0a0e1a;
+            --primary-light: #12182b;
+            --accent: #00b4d8;
+            --accent-glow: rgba(0, 180, 216, 0.35);
+            --accent-secondary: #90e0ef;
+            --text-primary: #e0f7fa;
+            --text-secondary: rgba(224, 247, 250, 0.6);
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --card-border: rgba(255, 255, 255, 0.1);
+            --card-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            --toggle-bg: #00b4d8;
+            --gradient-start: #0a0e1a;
+            --gradient-end: #0f1525;
+            --tag-bg: rgba(0, 180, 216, 0.12);
+            --tag-border: rgba(0, 180, 216, 0.25);
+            --tag-text: #00b4d8;
+            --hero-gradient: linear-gradient(135deg, rgba(0, 180, 216, 0.15), rgba(144, 224, 239, 0.1));
+            --section-divider: rgba(0, 180, 216, 0.08);
+        }
+
+        /* ========================================
+           GLOBAL RESET & BASE
+        ======================================== */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+            transition: background 0.6s ease-in-out, color 0.6s ease-in-out;
+        }
+
+        /* ========================================
+           SVG PATTERN BACKGROUND
+        ======================================== */
+        .bg-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.04;
+            transition: opacity 0.6s ease-in-out;
+        }
+
+        .bg-pattern svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .bg-pattern.fade-out {
+            opacity: 0;
+        }
+
+        /* Gradient overlay on background */
+        .bg-gradient {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            background: radial-gradient(ellipse at 20% 50%, var(--accent-glow) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(0, 180, 216, 0.08) 0%, transparent 40%);
+            pointer-events: none;
+            transition: all 0.6s ease-in-out;
+        }
+
+        /* ========================================
+           NAVIGATION / HEADER
+        ======================================== */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(13, 17, 23, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--card-border);
+            transition: all 0.6s ease-in-out;
+        }
+
+        .n8n-mode header {
+            background: rgba(10, 14, 26, 0.6);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: var(--text-primary);
+            transition: color 0.6s ease-in-out;
+        }
+
+        .logo span {
+            color: var(--accent);
+            transition: color 0.6s ease-in-out;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease, background 0.6s ease-in-out;
+        }
+
+        nav a:hover {
+            color: var(--text-primary);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* ========================================
+           TOGGLE SWITCH (Floating)
+        ======================================== */
+        .hero-toggle {
+            position: fixed;
+            top: 72px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.4rem 1rem;
+            background: rgba(15, 20, 35, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--card-border);
+            border-radius: 50px;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+            transition: all 0.6s ease-in-out;
+        }
+
+        .n8n-mode .hero-toggle {
+            background: rgba(10, 14, 26, 0.8);
+        }
+
+        .toggle-label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.6s ease-in-out;
+            white-space: nowrap;
+            cursor: default;
+        }
+
+        .toggle-label.active {
+            color: var(--accent);
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 48px;
+            height: 24px;
+            cursor: pointer;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 30px;
+            border: 1px solid var(--card-border);
+            transition: all 0.6s ease-in-out;
+        }
+
+        .toggle-slider::before {
+            content: '';
+            position: absolute;
+            height: 18px;
+            width: 18px;
+            left: 2px;
+            bottom: 2px;
+            background: var(--accent);
+            border-radius: 50%;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            box-shadow: 0 2px 12px var(--accent-glow);
+        }
+
+        .toggle-switch input:checked+.toggle-slider::before {
+            transform: translateX(24px);
+        }
+
+        .toggle-switch input:checked+.toggle-slider {
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        /* Toggle icon indicators */
+        .toggle-slider .icon-data,
+        .toggle-slider .icon-n8n {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 0.55rem;
+            line-height: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.3s ease;
+        }
+
+        .toggle-slider .icon-data {
+            left: 4px;
+            opacity: 1;
+        }
+
+        .toggle-slider .icon-n8n {
+            right: 4px;
+            opacity: 0.4;
+        }
+
+        .toggle-switch input:checked+.toggle-slider .icon-data {
+            opacity: 0.4;
+        }
+
+        .toggle-switch input:checked+.toggle-slider .icon-n8n {
+            opacity: 1;
+        }
+
+        /* ========================================
+           WIPE TRANSITION OVERLAY
+        ======================================== */
+        .wipe-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            pointer-events: none;
+            transform: translateX(-100%);
+        }
+
+        .wipe-overlay .wipe-fill {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent 0%, var(--accent) 40%, var(--accent) 60%, transparent 100%);
+            opacity: 0.15;
+        }
+
+        .wipe-overlay .wipe-line {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 3px;
+            height: 100%;
+            background: var(--accent);
+            box-shadow: 0 0 20px var(--accent), 0 0 60px var(--accent-glow), 0 0 100px var(--accent-glow);
+        }
+
+        .wipe-overlay.sweep-right {
+            animation: sweepRight 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        .wipe-overlay.sweep-left {
+            animation: sweepLeft 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        @keyframes sweepRight {
+            0% {
+                transform: translateX(-100%);
+            }
+
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        @keyframes sweepLeft {
+            0% {
+                transform: translateX(100%);
+            }
+
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        /* ========================================
+           MAIN CONTENT
+        ======================================== */
+        main {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        section {
+            padding: 5rem 0;
+        }
+
+        /* ========================================
+           HERO SECTION
+        ======================================== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 2rem;
+            padding-top: 6rem;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1.2rem;
+            background: var(--tag-bg);
+            border: 1px solid var(--tag-border);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--tag-text);
+            width: fit-content;
+            transition: all 0.6s ease-in-out;
+        }
+
+        .hero-badge .pulse {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent);
+            animation: pulse 2s infinite;
+            transition: background 0.6s ease-in-out;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.5;
+                transform: scale(1.5);
+            }
+        }
+
+        .hero h1 {
+            font-size: clamp(2.8rem, 6vw, 5rem);
+            font-weight: 900;
+            line-height: 1.05;
+            letter-spacing: -2px;
+            transition: color 0.6s ease-in-out;
+        }
+
+        .hero h1 .highlight {
+            background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            transition: all 0.6s ease-in-out;
+        }
+
+        .hero-description {
+            font-size: 1.2rem;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            max-width: 600px;
+            transition: color 0.6s ease-in-out;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.85rem 2rem;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: var(--primary);
+            box-shadow: 0 4px 20px var(--accent-glow);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px var(--accent-glow);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--card-border);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        /* ========================================
+           SECTION HEADERS
+        ======================================== */
+        .section-header {
+            margin-bottom: 3rem;
+        }
+
+        .section-header .overline {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--accent);
+            margin-bottom: 0.75rem;
+            transition: color 0.6s ease-in-out;
+        }
+
+        .section-header h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            letter-spacing: -1px;
+            transition: color 0.6s ease-in-out;
+        }
+
+        .section-divider {
+            width: 60px;
+            height: 3px;
+            background: var(--accent);
+            border-radius: 3px;
+            margin-top: 1rem;
+            transition: background 0.6s ease-in-out;
+        }
+
+        /* ========================================
+           ABOUT SECTION
+        ======================================== */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .about-text {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            transition: color 0.6s ease-in-out;
+        }
+
+        .about-text p {
+            margin-bottom: 1.2rem;
+        }
+
+        /* Stats Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: var(--card-shadow);
+            transition: all 0.6s ease-in-out;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .stat-number {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--accent);
+            font-family: 'JetBrains Mono', monospace;
+            transition: color 0.6s ease-in-out;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-top: 0.3rem;
+            font-weight: 500;
+            transition: color 0.6s ease-in-out;
+        }
+
+        /* ========================================
+           SKILLS SECTION
+        ======================================== */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .skill-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.6rem 1.2rem;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* ========================================
+           PROJECTS SECTION
+        ======================================== */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: var(--card-shadow);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 16px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .project-card:hover::before {
+            opacity: 1;
+        }
+
+        .project-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: var(--hero-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            margin-bottom: 1.2rem;
+            transition: all 0.6s ease-in-out;
+        }
+
+        .project-card h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.6rem;
+            transition: color 0.6s ease-in-out;
+        }
+
+        .project-card p {
+            font-size: 0.9rem;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            margin-bottom: 1.2rem;
+            transition: color 0.6s ease-in-out;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .project-tags span {
+            padding: 0.3rem 0.8rem;
+            background: var(--tag-bg);
+            border: 1px solid var(--tag-border);
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--tag-text);
+            transition: all 0.6s ease-in-out;
+        }
+
+        /* ========================================
+           CONTACT SECTION
+        ======================================== */
+        .contact-content {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-content p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.7;
+            transition: color 0.6s ease-in-out;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .contact-link:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        /* ========================================
+           FOOTER
+        ======================================== */
+        footer {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid var(--card-border);
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            transition: all 0.6s ease-in-out;
+        }
+
+        /* ========================================
+           CONTENT TRANSITION ANIMATION
+        ======================================== */
+        .content-fade {
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .content-fade.fade-out {
+            opacity: 0;
+            transform: translateY(8px);
+        }
+
+        /* ========================================
+           SCROLL REVEAL
+        ======================================== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ========================================
+           RESPONSIVE
+        ======================================== */
+        @media (max-width: 768px) {
+            header {
+                padding: 0.75rem 1rem;
+            }
+
+            nav a {
+                display: none;
+            }
+
+            .toggle-label {
+                font-size: 0.65rem;
+                letter-spacing: 1px;
+            }
+
+            main {
+                padding: 0 1rem;
+            }
+
+            .hero {
+                padding-top: 5rem;
+            }
+
+            .hero h1 {
+                letter-spacing: -1px;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+            }
+
+            .btn {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .toggle-container {
+                gap: 0.4rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ==============================
+         SVG PATTERN BACKGROUNDS
+    ============================== -->
+    <!-- Data Analyst Pattern -->
+    <div class="bg-pattern" id="patternData">
+        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+            <defs>
+                <pattern id="dataPattern" x="0" y="0" width="180" height="180" patternUnits="userSpaceOnUse">
+                    <!-- CPU Chip -->
+                    <rect x="25" y="25" width="30" height="30" rx="3" fill="none" stroke="currentColor"
+                        stroke-width="1.5" opacity="0.5" />
+                    <rect x="33" y="33" width="14" height="14" rx="1" fill="currentColor" opacity="0.2" />
+                    <line x1="30" y1="22" x2="30" y2="25" stroke="currentColor" stroke-width="1.5" opacity="0.4" />
+                    <line x1="40" y1="22" x2="40" y2="25" stroke="currentColor" stroke-width="1.5" opacity="0.4" />
+                    <line x1="50" y1="22" x2="50" y2="25" stroke="currentColor" stroke-width="1.5" opacity="0.4" />
+                    <line x1="30" y1="55" x2="30" y2="58" stroke="currentColor" stroke-width="1.5" opacity="0.4" />
+                    <line x1="40" y1="55" x2="40" y2="58" stroke="currentColor" stroke-width="1.5" opacity="0.4" />
+                    <line x1="50" y1="55" x2="50" y2="58" stroke="currentColor" stroke-width="1.5" opacity="0.4" />
+                    <!-- Monitor -->
+                    <rect x="110" y="25" width="40" height="28" rx="3" fill="none" stroke="currentColor"
+                        stroke-width="1.5" opacity="0.5" />
+                    <line x1="130" y1="53" x2="130" y2="60" stroke="currentColor" stroke-width="1.5" opacity="0.4" />
+                    <line x1="120" y1="60" x2="140" y2="60" stroke="currentColor" stroke-width="1.5" opacity="0.4" />
+                    <!-- Network nodes -->
+                    <circle cx="30" cy="120" r="5" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.5" />
+                    <circle cx="70" cy="110" r="5" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.5" />
+                    <circle cx="50" cy="145" r="5" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.5" />
+                    <line x1="35" y1="118" x2="65" y2="112" stroke="currentColor" stroke-width="1" opacity="0.3"
+                        stroke-dasharray="3 2" />
+                    <line x1="33" y1="124" x2="47" y2="141" stroke="currentColor" stroke-width="1" opacity="0.3"
+                        stroke-dasharray="3 2" />
+                    <line x1="67" y1="114" x2="53" y2="141" stroke="currentColor" stroke-width="1" opacity="0.3"
+                        stroke-dasharray="3 2" />
+                    <!-- Terminal text -->
+                    <text x="110" y="110" font-family="JetBrains Mono, monospace" font-size="7" fill="currentColor"
+                        opacity="0.35">$ sudo</text>
+                    <text x="110" y="122" font-family="JetBrains Mono, monospace" font-size="7" fill="currentColor"
+                        opacity="0.35">fix --hw</text>
+                    <!-- Circuit trace -->
+                    <polyline points="10,170 40,170 50,160 90,160 100,170 160,170" fill="none" stroke="currentColor"
+                        stroke-width="1.2" opacity="0.3" stroke-linecap="round" />
+                    <circle cx="50" cy="160" r="2" fill="currentColor" opacity="0.4" />
+                    <circle cx="100" cy="170" r="2" fill="currentColor" opacity="0.4" />
+                </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#dataPattern)" style="color: #39d353;" />
+        </svg>
+    </div>
+
+    <!-- n8n Automation Pattern -->
+    <div class="bg-pattern" id="patternN8n" style="opacity: 0;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+            <defs>
+                <pattern id="n8nPattern" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
+                    <!-- Shield -->
+                    <path d="M33,20 L50,14 L67,20 L67,42 C67,52 50,62 50,62 C50,62 33,52 33,42 Z" fill="none"
+                        stroke="currentColor" stroke-width="1.5" opacity="0.5" />
+                    <text x="43" y="44" font-family="JetBrains Mono, monospace" font-size="12" fill="currentColor"
+                        opacity="0.35">✓</text>
+                    <!-- Lock -->
+                    <rect x="130" y="35" width="24" height="18" rx="3" fill="none" stroke="currentColor"
+                        stroke-width="1.5" opacity="0.5" />
+                    <path d="M135,35 L135,28 C135,22 149,22 149,28 L149,35" fill="none" stroke="currentColor"
+                        stroke-width="1.5" opacity="0.4" />
+                    <circle cx="142" cy="44" r="2" fill="currentColor" opacity="0.4" />
+                    <!-- Terminal window -->
+                    <rect x="15" y="90" width="55" height="38" rx="4" fill="none" stroke="currentColor"
+                        stroke-width="1.5" opacity="0.5" />
+                    <line x1="15" y1="99" x2="70" y2="99" stroke="currentColor" stroke-width="1" opacity="0.3" />
+                    <text x="20" y="113" font-family="JetBrains Mono, monospace" font-size="7" fill="currentColor"
+                        opacity="0.3">$ nmap -sV</text>
+                    <text x="20" y="123" font-family="JetBrains Mono, monospace" font-size="7" fill="currentColor"
+                        opacity="0.3">scanning...</text>
+                    <!-- Firewall -->
+                    <rect x="115" y="90" width="50" height="35" rx="3" fill="none" stroke="currentColor"
+                        stroke-width="1.5" opacity="0.5" />
+                    <line x1="115" y1="100" x2="165" y2="100" stroke="currentColor" stroke-width="1" opacity="0.3" />
+                    <line x1="115" y1="110" x2="165" y2="110" stroke="currentColor" stroke-width="1" opacity="0.3" />
+                    <line x1="115" y1="115" x2="165" y2="115" stroke="currentColor" stroke-width="1" opacity="0.3" />
+                    <!-- Network flow -->
+                    <polyline points="15,165 50,155 85,168 120,150 155,160 185,140" fill="none" stroke="currentColor"
+                        stroke-width="1.2" opacity="0.3" stroke-dasharray="5 3" stroke-linecap="round" />
+                    <circle cx="50" cy="155" r="3" fill="currentColor" opacity="0.35" />
+                    <circle cx="120" cy="150" r="3" fill="currentColor" opacity="0.35" />
+                    <circle cx="185" cy="140" r="3" fill="currentColor" opacity="0.35" />
+                </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#n8nPattern)" style="color: #00b4d8;" />
+        </svg>
+    </div>
+
+    <!-- Gradient Overlay -->
+    <div class="bg-gradient"></div>
+
+    <!-- Wipe Transition Overlay -->
+    <div class="wipe-overlay" id="wipeOverlay">
+        <div class="wipe-fill"></div>
+        <div class="wipe-line"></div>
+    </div>
+
+    <!-- ==============================
+         HEADER / NAV
+    ============================== -->
+    <header>
+        <div class="logo">A<span>.</span></div>
+        <nav>
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <!-- ==============================
+         FLOATING TOGGLE
+    ============================== -->
+    <div class="hero-toggle">
+        <span class="toggle-label active" id="labelData"><i class="fa-solid fa-screwdriver-wrench"></i> IT Support</span>
+        <label class="toggle-switch" id="modeToggle" aria-label="Toggle between IT Support and Cybersecurity mode">
+            <input type="checkbox" id="toggleInput">
+            <span class="toggle-slider">
+                <span class="icon-data"><i class="fa-solid fa-desktop" style="font-size:0.5rem"></i></span>
+                <span class="icon-n8n"><i class="fa-solid fa-shield-halved" style="font-size:0.5rem"></i></span>
+            </span>
+        </label>
+        <span class="toggle-label" id="labelN8n"><i class="fa-solid fa-shield-halved"></i> Cybersecurity</span>
+    </div>
+
+    <!-- ==============================
+         MAIN CONTENT
+    ============================== -->
+    <main>
+
+        <!-- HERO -->
+        <section class="hero" id="hero">
+            <div class="content-fade">
+                <div class="hero-badge">
+                    <span class="pulse"></span>
+                    <span id="heroBadge">Available for IT & Hardware Projects</span>
+                </div>
+            </div>
+            <h1 class="content-fade">
+                <span id="heroLine1">Fixing Hardware</span><br>
+                <span>With <span class="highlight" id="heroHighlight">Expert Precision</span></span>
+            </h1>
+            <p class="hero-description content-fade" id="heroDesc">
+                I diagnose, repair, and optimize computer systems from the ground up. From hardware troubleshooting to
+                OS deployment and network setup, I keep your technology running at peak performance.
+            </p>
+            <div class="hero-cta content-fade">
+                <a href="#projects" class="btn btn-primary" id="heroCta1">
+                    <span>View Projects</span> →
+                </a>
+                <a href="#contact" class="btn btn-outline" id="heroCta2">
+                    <span>Get in Touch</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- ABOUT -->
+        <section id="about" class="reveal">
+            <div class="section-header">
+                <span class="overline" id="aboutOverline">About Me</span>
+                <h2 id="aboutTitle">Who I Am</h2>
+                <div class="section-divider"></div>
+            </div>
+            <div class="about-grid">
+                <div class="about-text content-fade">
+                    <p id="aboutP1">
+                        I'm Anass Mohamad, a passionate IT & Hardware specialist with deep expertise in computer
+                        systems, troubleshooting, and technical support. I excel at diagnosing hardware failures,
+                        deploying operating systems, and optimizing system performance to ensure reliability and
+                        efficiency.
+                    </p>
+                    <p id="aboutP2">
+                        My skill set spans hardware repair, networking fundamentals, data recovery, and cybersecurity. I
+                        believe technology should work seamlessly — and when it doesn't, I'm the one who makes it right.
+                        I also have experience in technical instruction and curriculum development for IT training.
+                    </p>
+                </div>
+                <div class="stats-grid content-fade">
+                    <div class="stat-card">
+                        <div class="stat-number" id="stat1Num">10+</div>
+                        <div class="stat-label" id="stat1Label">Systems Repaired</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="stat2Num">5+</div>
+                        <div class="stat-label" id="stat2Label">Networks Deployed</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="stat3Num">OS</div>
+                        <div class="stat-label" id="stat3Label">Multi-Platform</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="stat4Num"><i class="fa-solid fa-shield-halved"></i></div>
+                        <div class="stat-label" id="stat4Label">Security Focused</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SKILLS -->
+        <section id="skills" class="reveal">
+            <div class="section-header">
+                <span class="overline" id="skillsOverline">Expertise</span>
+                <h2 id="skillsTitle">Tools & Technologies</h2>
+                <div class="section-divider"></div>
+            </div>
+            <div class="skills-container content-fade" id="skillsContainer">
+                <!-- Populated by JS -->
+            </div>
+        </section>
+
+        <!-- PROJECTS -->
+        <section id="projects" class="reveal">
+            <div class="section-header">
+                <span class="overline" id="projectsOverline">Portfolio</span>
+                <h2 id="projectsTitle">Featured Projects</h2>
+                <div class="section-divider"></div>
+            </div>
+            <div class="projects-grid content-fade" id="projectsGrid">
+                <!-- Populated by JS -->
+            </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section id="contact" class="reveal">
+            <div class="section-header" style="text-align:center;">
+                <span class="overline" id="contactOverline">Contact</span>
+                <h2 id="contactTitle">Let's Work Together</h2>
+                <div class="section-divider" style="margin: 1rem auto 0;"></div>
+            </div>
+            <div class="contact-content content-fade">
+                <p id="contactDesc">
+                    Have a hardware issue or need IT support? I'd love to hear about your technical challenges and help
+                    you get your systems running smoothly.
+                </p>
+                <div class="contact-links">
+                    <a href="https://www.linkedin.com/in/anass0mohamad/" target="_blank" class="contact-link"><i
+                            class="fa-brands fa-linkedin"></i> LinkedIn</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2026 — Designed & Built with ❤️ and a bit of <span id="footerAccent"
+                style="color: var(--accent); transition: color 0.6s ease-in-out;">clean hardware</span>.</p>
+    </footer>
+
+    <!-- ==============================
+         JAVASCRIPT
+    ============================== -->
+    <script>
+        (() => {
+            'use strict';
+
+            // ===============================
+            // CONTENT DATA STORE
+            // ===============================
+            const CONTENT = {
+                data: {
+                    heroBadge: "Available for IT & Hardware Projects",
+                    heroLine1: "Fixing Hardware",
+                    heroHighlight: "Expert Precision",
+                    heroDesc: "I diagnose, repair, and optimize computer systems from the ground up. From hardware troubleshooting to OS deployment and network setup, I keep your technology running at peak performance.",
+                    heroCta1: "View Projects →",
+                    heroCta2: "Get in Touch",
+                    aboutOverline: "About Me",
+                    aboutTitle: "Who I Am",
+                    aboutP1: "I'm Anass Mohamad, a passionate IT & Hardware specialist with deep expertise in computer systems, troubleshooting, and technical support. I excel at diagnosing hardware failures, deploying operating systems, and optimizing system performance to ensure reliability and efficiency.",
+                    aboutP2: "My skill set spans hardware repair, networking fundamentals, data recovery, and cybersecurity. I believe technology should work seamlessly — and when it doesn't, I'm the one who makes it right. I also have experience in technical instruction and curriculum development for IT training.",
+                    stat1Num: "10+", stat1Label: "Systems Repaired",
+                    stat2Num: "5+", stat2Label: "Networks Deployed",
+                    stat3Num: "OS", stat3Label: "Multi-Platform",
+                    stat4Num: "<i class='fa-solid fa-shield-halved'></i>", stat4Label: "Security Focused",
+                    skillsOverline: "Expertise",
+                    skillsTitle: "Tools & Technologies",
+                    skills: [
+                        "<i class='fa-solid fa-microchip'></i> Computer Hardware",
+                        "<i class='fa-solid fa-screwdriver-wrench'></i> Hardware Troubleshooting",
+                        "<i class='fa-brands fa-windows'></i> OS Deployment",
+                        "<i class='fa-solid fa-gauge-high'></i> System Optimization",
+                        "<i class='fa-solid fa-hard-drive'></i> Data Recovery",
+                        "<i class='fa-solid fa-network-wired'></i> Networking Fundamentals",
+                        "<i class='fa-solid fa-shield-halved'></i> Cybersecurity",
+                        "<i class='fa-solid fa-bug-slash'></i> Malware Removal",
+                        "<i class='fa-solid fa-chalkboard-user'></i> Technical Instruction",
+                        "<i class='fa-solid fa-book-open'></i> Curriculum Development",
+                        "<i class='fa-solid fa-headset'></i> IT Support",
+                        "<i class='fa-solid fa-lightbulb'></i> Problem Solving",
+                        "<i class='fa-solid fa-globe'></i> Advanced Networking"
+                    ],
+                    projectsOverline: "Portfolio",
+                    projectsTitle: "Featured Projects",
+                    projects: [
+                        {
+                            icon: "<i class='fa-solid fa-computer'></i>",
+                            title: "Enterprise Workstation Deployment",
+                            desc: "Configured and deployed a fleet of workstations for a small business environment. Handled hardware assembly, OS installation (Windows & Linux), driver setup, and network integration. Optimized each system for maximum performance and established a standardized imaging process for rapid deployment.",
+                            tags: ["Hardware", "OS Deployment", "Networking"]
+                        },
+                        {
+                            icon: "<i class='fa-solid fa-hard-drive'></i>",
+                            title: "Critical Data Recovery Operation",
+                            desc: "Successfully recovered critical business data from failing hard drives and corrupted file systems. Utilized specialized recovery tools and techniques to retrieve over 95% of data. Implemented a backup strategy and RAID configuration to prevent future data loss incidents.",
+                            tags: ["Data Recovery", "Hardware", "Backup Solutions"]
+                        },
+                        {
+                            icon: "<i class='fa-solid fa-network-wired'></i>",
+                            title: "Office Network Infrastructure Setup",
+                            desc: "Designed and implemented a complete office network infrastructure including router/switch configuration, VLAN segmentation, firewall rules, and wireless access points. Ensured secure, high-performance connectivity for 20+ devices with proper network monitoring and documentation.",
+                            tags: ["Networking", "Security", "Infrastructure"]
+                        },
+                        {
+                            icon: "<i class='fa-solid fa-chalkboard-user'></i>",
+                            title: "IT Training Curriculum Development",
+                            desc: "Developed a comprehensive IT training curriculum covering hardware basics, troubleshooting methodologies, OS management, and cybersecurity fundamentals. Created hands-on lab exercises and assessment materials that improved student pass rates in practical IT certification exams.",
+                            tags: ["Technical Instruction", "Curriculum", "IT Training"]
+                        }
+                    ],
+                    contactOverline: "Contact",
+                    contactTitle: "Let's Work Together",
+                    contactDesc: "Have a hardware issue or need IT support? Whether it's building systems, fixing networks, or recovering data — I'd love to hear about your technical challenges.",
+                    footerAccent: "clean hardware"
+                },
+                n8n: {
+                    heroBadge: "Available for Cybersecurity Projects",
+                    heroLine1: "Securing Systems",
+                    heroHighlight: "Total Protection",
+                    heroDesc: "I protect digital infrastructure through proactive security measures, malware removal, and network hardening. From endpoint protection to vulnerability assessments, I keep your systems safe and resilient.",
+                    heroCta1: "View Security Work →",
+                    heroCta2: "Let's Secure",
+                    aboutOverline: "About Me",
+                    aboutTitle: "The Cybersecurity Specialist",
+                    aboutP1: "I'm Anass Mohamad — beyond hardware expertise, I specialize in cybersecurity and network defense. I identify vulnerabilities, remove malware, harden systems, and implement security best practices that protect businesses from evolving digital threats.",
+                    aboutP2: "With deep knowledge of networking protocols, firewall configuration, and endpoint security, I build layered defense strategies that are robust yet manageable. From securing small offices to training teams on security awareness — I make sure your digital assets stay protected.",
+                    stat1Num: "<i class='fa-solid fa-lock'></i>", stat1Label: "Systems Secured",
+                    stat2Num: "5+", stat2Label: "Security Audits",
+                    stat3Num: "<i class='fa-solid fa-virus-slash'></i>", stat3Label: "Threats Removed",
+                    stat4Num: "<i class='fa-solid fa-fire-flame-curved'></i>", stat4Label: "Firewalls Configured",
+                    skillsOverline: "Expertise",
+                    skillsTitle: "Security Stack",
+                    skills: [
+                        "<i class='fa-solid fa-shield-halved'></i> Cybersecurity",
+                        "<i class='fa-solid fa-bug-slash'></i> Malware Removal",
+                        "<i class='fa-solid fa-fire-flame-curved'></i> Firewall Configuration",
+                        "<i class='fa-solid fa-network-wired'></i> Advanced Networking",
+                        "<i class='fa-solid fa-user-shield'></i> Endpoint Protection",
+                        "<i class='fa-solid fa-magnifying-glass'></i> Vulnerability Assessment",
+                        "<i class='fa-solid fa-key'></i> Access Control",
+                        "<i class='fa-solid fa-lock'></i> Encryption",
+                        "<i class='fa-solid fa-tower-broadcast'></i> Network Monitoring",
+                        "<i class='fa-solid fa-database'></i> Data Protection",
+                        "<i class='fa-solid fa-terminal'></i> Security Tools",
+                        "<i class='fa-brands fa-linux'></i> Linux Security",
+                        "<i class='fa-solid fa-eye'></i> Threat Detection",
+                        "<i class='fa-solid fa-chalkboard-user'></i> Security Training",
+                        "<i class='fa-solid fa-clipboard-check'></i> Compliance"
+                    ],
+                    projectsOverline: "Portfolio",
+                    projectsTitle: "Security Projects",
+                    projects: [
+                        {
+                            icon: "<i class='fa-solid fa-virus-slash'></i>",
+                            title: "Malware Incident Response",
+                            desc: "Led a malware incident response operation for a compromised network. Identified the infection vector, quarantined affected systems, performed deep malware analysis and removal, and implemented endpoint protection measures to prevent recurrence. Restored all systems to clean operational status.",
+                            tags: ["Malware Removal", "Incident Response", "Endpoint Security"]
+                        },
+                        {
+                            icon: "<i class='fa-solid fa-shield-halved'></i>",
+                            title: "Network Security Hardening",
+                            desc: "Performed a comprehensive security audit and hardening of a business network. Configured firewalls, implemented VLAN segmentation, set up IDS/IPS rules, enforced password policies, and established security monitoring. Reduced the attack surface by over 70%.",
+                            tags: ["Firewall", "Network Security", "IDS/IPS"]
+                        }
+                    ],
+                    contactOverline: "Contact",
+                    contactTitle: "Let's Secure Together",
+                    contactDesc: "Worried about your digital security? Let's talk about how I can help protect your systems, train your team, and build a robust security posture.",
+                    footerAccent: "solid security"
+                }
+            };
+
+            // ===============================
+            // DOM REFERENCES
+            // ===============================
+            const $ = (sel) => document.querySelector(sel);
+            const $$ = (sel) => document.querySelectorAll(sel);
+
+            const toggleInput = $('#toggleInput');
+            const labelData = $('#labelData');
+            const labelN8n = $('#labelN8n');
+            const patternData = $('#patternData');
+            const patternN8n = $('#patternN8n');
+
+            // All content elements that get text swapped
+            const textElements = [
+                'heroBadge', 'heroLine1', 'heroHighlight', 'heroDesc',
+                'aboutOverline', 'aboutTitle', 'aboutP1', 'aboutP2',
+                'stat1Num', 'stat1Label', 'stat2Num', 'stat2Label',
+                'stat3Num', 'stat3Label', 'stat4Num', 'stat4Label',
+                'skillsOverline', 'skillsTitle',
+                'projectsOverline', 'projectsTitle',
+                'contactOverline', 'contactTitle', 'contactDesc',
+                'footerAccent'
+            ];
+
+            // ===============================
+            // RENDER FUNCTIONS
+            // ===============================
+            function renderSkills(mode) {
+                const container = $('#skillsContainer');
+                container.innerHTML = CONTENT[mode].skills
+                    .map(skill => `<span class="skill-tag">${skill}</span>`)
+                    .join('');
+            }
+
+            function renderProjects(mode) {
+                const grid = $('#projectsGrid');
+                grid.innerHTML = CONTENT[mode].projects
+                    .map(project => `
+                    <div class="project-card">
+                        <div class="project-icon">${project.icon}</div>
+                        <h3>${project.title}</h3>
+                        <p>${project.desc}</p>
+                        <div class="project-tags">
+                            ${project.tags.map(tag => `<span>${tag}</span>`).join('')}
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            function updateTextContent(mode) {
+                textElements.forEach(id => {
+                    const el = $(`#${id}`);
+                    if (el && CONTENT[mode][id]) {
+                        el.innerHTML = CONTENT[mode][id];
+                    }
+                });
+                // CTA buttons need innerHTML for arrow
+                const cta1 = $('#heroCta1');
+                const cta2 = $('#heroCta2');
+                if (cta1) cta1.innerHTML = `<span>${CONTENT[mode].heroCta1.replace(' →', '')}</span> →`;
+                if (cta2) cta2.innerHTML = `<span>${CONTENT[mode].heroCta2}</span>`;
+            }
+
+            // ===============================
+            // MODE SWITCHING
+            // ===============================
+            let isTransitioning = false;
+
+            function switchMode(toN8n) {
+                if (isTransitioning) return;
+                isTransitioning = true;
+
+                const mode = toN8n ? 'n8n' : 'data';
+                const wipeOverlay = $('#wipeOverlay');
+
+                // 1. Start wipe animation
+                wipeOverlay.classList.remove('sweep-right', 'sweep-left');
+                // Force reflow so animation restarts
+                void wipeOverlay.offsetWidth;
+                wipeOverlay.classList.add(toN8n ? 'sweep-right' : 'sweep-left');
+
+                // 2. Fade out content
+                const fadeEls = $$('.content-fade');
+                fadeEls.forEach(el => el.classList.add('fade-out'));
+
+                // 3. At the midpoint of the wipe — swap everything
+                setTimeout(() => {
+                    // Toggle theme class
+                    document.body.classList.toggle('n8n-mode', toN8n);
+
+                    // Toggle labels
+                    labelData.classList.toggle('active', !toN8n);
+                    labelN8n.classList.toggle('active', toN8n);
+
+                    // Cross-fade SVG patterns
+                    if (toN8n) {
+                        patternData.style.opacity = '0';
+                        patternN8n.style.opacity = '';
+                    } else {
+                        patternN8n.style.opacity = '0';
+                        patternData.style.opacity = '';
+                    }
+
+                    // Update content
+                    updateTextContent(mode);
+                    renderSkills(mode);
+                    renderProjects(mode);
+
+                    // Fade content back in
+                    requestAnimationFrame(() => {
+                        fadeEls.forEach(el => el.classList.remove('fade-out'));
+                    });
+                }, 350);
+
+                // 4. Clean up after wipe completes
+                setTimeout(() => {
+                    isTransitioning = false;
+                }, 750);
+            }
+
+            // ===============================
+            // TOGGLE EVENT
+            // ===============================
+            toggleInput.addEventListener('change', () => {
+                switchMode(toggleInput.checked);
+            });
+
+            // ===============================
+            // SCROLL REVEAL (Intersection Observer)
+            // ===============================
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+            $$('.reveal').forEach(el => observer.observe(el));
+
+            // ===============================
+            // SMOOTH SCROLL FOR NAV LINKS
+            // ===============================
+            $$('nav a[href^="#"]').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const target = $(link.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
+            });
+
+            // ===============================
+            // HEADER SCROLL EFFECT
+            // ===============================
+            let lastScroll = 0;
+            const header = $('header');
+
+            window.addEventListener('scroll', () => {
+                const currentScroll = window.pageYOffset;
+                if (currentScroll > 100) {
+                    header.style.boxShadow = '0 4px 30px rgba(0,0,0,0.3)';
+                } else {
+                    header.style.boxShadow = 'none';
+                }
+                lastScroll = currentScroll;
+            }, { passive: true });
+
+            // ===============================
+            // INITIAL RENDER
+            // ===============================
+            renderSkills('data');
+            renderProjects('data');
+
+        })();
+    </script>
+</body>
+
+</html>
